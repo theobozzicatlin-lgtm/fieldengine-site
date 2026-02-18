@@ -2,98 +2,149 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>FIELD — Design → Cost → Quote</title>
+  <title>FIELD — Professional Landscape Estimating</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0d0f14;
-      color: #fff;
-      text-align: center;
+      font-family: 'Inter', sans-serif;
+      background: #0b0f19;
+      color: #ffffff;
+      line-height: 1.6;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 80px 20px;
+      padding: 80px 24px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 120px 0;
     }
 
     h1 {
-      font-size: 48px;
+      font-size: 64px;
       margin-bottom: 20px;
+      letter-spacing: -1px;
     }
 
-    h2 {
-      font-weight: 400;
-      color: #aaa;
-      margin-bottom: 40px;
+    .subheading {
+      font-size: 22px;
+      color: #b0b6c3;
+      max-width: 700px;
+      margin: 0 auto 40px;
     }
 
     .cta {
       display: inline-block;
-      background: #6c5ce7;
-      padding: 14px 28px;
-      border-radius: 8px;
+      background: linear-gradient(90deg, #6c5ce7, #8e7dff);
+      padding: 16px 34px;
+      border-radius: 10px;
       text-decoration: none;
       color: white;
       font-weight: 600;
       font-size: 18px;
+      transition: 0.2s ease;
+    }
+
+    .cta:hover {
+      opacity: 0.9;
     }
 
     .section {
-      margin-top: 100px;
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .section p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: #b0b6c3;
+      font-size: 18px;
+    }
+
+    .pricing {
+      background: #111624;
+      padding: 60px;
+      border-radius: 16px;
+      margin-top: 40px;
+      display: inline-block;
+    }
+
+    .price {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
 
     .footer {
-      margin-top: 120px;
+      text-align: center;
+      padding: 60px 0;
       font-size: 14px;
-      color: #777;
+      color: #666;
     }
 
     .footer a {
-      color: #777;
+      color: #666;
       text-decoration: none;
-      margin: 0 10px;
+      margin: 0 12px;
     }
+
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+  <div class="container hero">
     <h1>FIELD</h1>
-    <h2>Geometry-driven estimating for landscape contractors</h2>
-
+    <p class="subheading">
+      The estimating engine built specifically for professional landscape contractors.
+      Turn geometry into accurate cost plans in minutes.
+    </p>
     <a href="#" class="cta">Start Subscription</a>
+  </div>
 
-    <div class="section">
-      <h3>What FIELD Does</h3>
-      <p>
-        FIELD turns your SketchUp models into accurate, build-ready cost plans.
-        Extract quantities. Generate materials. Control margin.
-      </p>
+  <div class="container section">
+    <h2>Design → Cost → Quote</h2>
+    <p>
+      FIELD extracts real quantities from your SketchUp models and converts them
+      into structured, build-ready cost plans. No spreadsheets. No guesswork.
+    </p>
+  </div>
+
+  <div class="container section">
+    <h2>Built for Commercial Control</h2>
+    <p>
+      Control labour. Materials. Plant. Disposal. Margin.
+      FIELD gives you the commercial clarity needed to price confidently and win work.
+    </p>
+  </div>
+
+  <div class="container section">
+    <h2>Simple Pricing</h2>
+
+    <div class="pricing">
+      <div class="price">£59 / month</div>
+      <p>Unlimited projects. Full engine access. Continuous updates.</p>
+      <br>
+      <a href="#" class="cta">Subscribe Now</a>
     </div>
 
-    <div class="section">
-      <h3>Built For</h3>
-      <p>
-        Professional landscape contractors and designers who need speed,
-        accuracy, and commercial control.
-      </p>
-    </div>
+  </div>
 
-    <div class="section">
-      <h3>Pricing</h3>
-      <p><strong>£69 / month</strong></p>
-      <p>Unlimited projects. Full estimating engine. Ongoing updates.</p>
-    </div>
-
-    <div class="footer">
-      <a href="/privacy.html">Privacy Policy</a> |
-      <a href="/terms.html">Terms & Conditions</a>
-    </div>
-
+  <div class="footer">
+    <a href="/privacy.html">Privacy Policy</a>
+    |
+    <a href="/terms.html">Terms & Conditions</a>
   </div>
 
 </body>
