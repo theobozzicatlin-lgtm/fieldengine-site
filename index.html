@@ -169,43 +169,44 @@
 
     /* hero */
     .hero{
-      padding: 56px 0 20px;
+      padding: 44px 0 20px;
       text-align:center;
     }
     .hero h1{
       margin:0 auto;
-      max-width: 980px;
-      font-size: clamp(34px, 4.2vw, 58px);
-      letter-spacing:-.02em;
-      line-height:1.05;
-      font-weight:650;
+      max-width: 760px;
+      font-size: clamp(30px, 3.8vw, 48px);
+      letter-spacing:-.015em;
+      line-height:1.12;
+      font-weight:620;
     }
     .hero h1 .thin{
       font-weight:420;
       color: rgba(255,255,255,.86);
     }
     .hero p{
-      margin: 16px auto 28px;
-      max-width: 760px;
-      font-size: 16px;
-      color: rgba(154,164,178,.92);
-      line-height:1.6;
+      margin: 14px auto 22px;
+      max-width: 560px;
+      font-size: 14px;
+      color: rgba(180,188,198,.86);
+      line-height:1.5;
     }
 
     .cta{
       display:inline-flex;
       align-items:center;
       gap:10px;
-      height:48px;
-      padding:0 22px 0 22px;
-      border-radius: 14px;
-      border:1px solid rgba(46,229,157,.28);
+      height:40px;
+      padding:0 18px;
+      border-radius: 10px;
+      border:1px solid rgba(46,229,157,.22);
       background:
-        radial-gradient(90% 140% at 50% 0%, rgba(46,229,157,.35) 0%, rgba(46,229,157,.10) 55%, rgba(46,229,157,.05) 100%),
-        linear-gradient(135deg, rgba(46,229,157,.18) 0%, rgba(27,191,130,.10) 60%, rgba(255,255,255,.04) 100%);
+        radial-gradient(90% 140% at 50% 0%, rgba(46,229,157,.30) 0%, rgba(46,229,157,.08) 55%, rgba(46,229,157,.03) 100%),
+        linear-gradient(135deg, rgba(46,229,157,.15) 0%, rgba(27,191,130,.08) 60%, rgba(255,255,255,.03) 100%);
       color: rgba(255,255,255,.92);
+      font-size:13px;
       font-weight:650;
-      box-shadow: 0 0 0 1px rgba(46,229,157,.10) inset, 0 24px 60px rgba(0,0,0,.55), 0 0 60px var(--glow);
+      box-shadow: 0 0 0 1px rgba(46,229,157,.10) inset, 0 14px 34px rgba(0,0,0,.45), 0 0 36px var(--glow);
       transition: transform .18s ease, box-shadow .22s ease, border-color .22s ease;
       user-select:none;
     }
@@ -270,124 +271,112 @@
       filter: contrast(1.05) saturate(1.06);
     }
 
-    /* built-in garden design with FIELD UI on top */
+    /* app scene in laptop */
     .screen .fallback{
       position:absolute; inset:0;
-      display:flex;
-      align-items:flex-end;
-      justify-content:flex-end;
-      padding: 18px;
+      padding: 10px;
       background:
-        radial-gradient(120% 140% at 40% 10%, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 55%),
-        linear-gradient(180deg, #233521 0%, #1b2a1b 48%, #131f14 100%);
+        radial-gradient(120% 120% at 50% 0%, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 55%),
+        linear-gradient(180deg, #181f28 0%, #121922 100%);
     }
-    .garden-canvas{
-      position:absolute;
-      inset:0;
-      overflow:hidden;
+    .app-shell{
+      width:100%;
+      height:100%;
+      border-radius: 10px;
+      border:1px solid rgba(255,255,255,.08);
       background:
-        repeating-linear-gradient(
-          90deg,
-          rgba(255,255,255,.05) 0px,
-          rgba(255,255,255,.05) 1px,
-          rgba(255,255,255,0) 1px,
-          rgba(255,255,255,0) 38px
-        ),
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,.05) 0px,
-          rgba(255,255,255,.05) 1px,
-          rgba(255,255,255,0) 1px,
-          rgba(255,255,255,0) 38px
-        );
-      opacity:.46;
-    }
-    .bed{
-      position:absolute;
-      border:1px solid rgba(255,255,255,.25);
-      background: rgba(46,229,157,.13);
-      box-shadow: 0 0 40px rgba(46,229,157,.08) inset;
-    }
-    .bed.a{
-      left:8%;
-      top:16%;
-      width:35%;
-      height:30%;
-      border-radius: 40px 120px 50px 90px;
-      transform: rotate(-7deg);
-    }
-    .bed.b{
-      left:18%;
-      bottom:12%;
-      width:42%;
-      height:30%;
-      border-radius: 110px 60px 90px 50px;
-      transform: rotate(8deg);
-    }
-    .path{
-      position:absolute;
-      right:10%;
-      top:10%;
-      width:40%;
-      height:74%;
-      border-radius: 120px;
-      border:2px solid rgba(240,246,255,.55);
-      opacity:.55;
-      filter: blur(.2px);
-    }
-    .field-ui{
-      position:relative;
-      z-index:2;
-      width:min(54%, 410px);
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.16);
-      background: linear-gradient(180deg, rgba(12,16,23,.94) 0%, rgba(8,12,18,.94) 100%);
-      box-shadow: 0 24px 48px rgba(0,0,0,.42);
-      backdrop-filter: blur(2px);
-      overflow:hidden;
-    }
-    .field-ui .bar{
-      height:34px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0 12px;
-      color:rgba(255,255,255,.88);
-      font-size:12px;
-      font-weight:600;
-      letter-spacing:.02em;
-    }
-    .field-ui .dot-row{
-      display:flex;
-      gap:6px;
-    }
-    .field-ui .dot{
-      width:8px; height:8px;
-      border-radius:999px;
-      background:rgba(255,255,255,.35);
-    }
-    .field-ui .body{
-      padding:10px;
+        linear-gradient(180deg, rgba(19,25,34,.96) 0%, rgba(13,18,25,.96) 100%);
       display:grid;
-      grid-template-columns: 1.2fr 1fr;
+      grid-template-columns: 180px 1fr;
+      overflow:hidden;
+    }
+    .app-side{
+      border-right:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.22);
+      padding: 12px 10px;
+    }
+    .app-side .line{
+      height:8px;
+      margin-bottom:10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.16);
+    }
+    .app-side .line.g{ background: rgba(46,229,157,.40); }
+    .app-main{
+      padding: 12px;
+      display:grid;
+      grid-template-rows: auto 1fr;
       gap:10px;
     }
-    .field-ui .card{
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,.10);
+    .app-top{
+      height:28px;
+      border-radius:8px;
+      border-bottom:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
-      min-height:74px;
-      padding:8px;
+      border:1px solid rgba(255,255,255,.08);
     }
-    .field-ui .line{
+    .app-grid{
+      display:grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap:10px;
+    }
+    .app-card{
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:10px;
+      background: rgba(255,255,255,.03);
+      padding:10px;
+    }
+    .app-card .line{
       height:8px;
       margin-bottom:8px;
       border-radius:999px;
-      background: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.17);
     }
-    .field-ui .line.g{ background: rgba(46,229,157,.42); }
-    .field-ui .line.s{ width:60%; }
+    .app-card .line.g{ background: rgba(46,229,157,.40); }
+    .app-card .line.s{ width:58%; }
+    .device-scene{
+      position:relative;
+      margin-top: 20px;
+    }
+    .laptop{
+      width: min(760px, 100%);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background:
+        radial-gradient(120% 200% at 50% 0%, rgba(255,255,255,.07) 0%, rgba(255,255,255,0) 60%),
+        linear-gradient(180deg, rgba(14,19,27,.94) 0%, rgba(9,13,18,.94) 100%);
+      box-shadow: 0 26px 72px rgba(0,0,0,.62);
+      padding: 12px;
+      position:relative;
+    }
+    .phone{
+      position:absolute;
+      right: 10%;
+      bottom: -18px;
+      width: 92px;
+      height: 186px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.22);
+      background: linear-gradient(180deg, rgba(15,19,25,.95) 0%, rgba(8,12,18,.95) 100%);
+      box-shadow: 0 16px 40px rgba(0,0,0,.55);
+      padding: 8px;
+    }
+    .phone::before{
+      content:"";
+      display:block;
+      margin: 0 auto 8px;
+      width:30px;
+      height:3px;
+      border-radius:999px;
+      background: rgba(255,255,255,.26);
+    }
+    .phone .line{
+      height:7px;
+      margin-bottom:7px;
+      border-radius:999px;
+      background: rgba(255,255,255,.16);
+    }
+    .phone .line.g{ background: rgba(46,229,157,.40); }
 
     .laptop-base{
       margin: 16px auto 0;
@@ -401,45 +390,63 @@
 
     /* feature row */
     .feature-row{
-      margin: 26px auto 0;
+      margin: 28px auto 0;
       display:flex;
       justify-content:center;
-      gap: 46px;
+      gap: 30px;
       flex-wrap:wrap;
       color: rgba(255,255,255,.82);
     }
     .feat{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      min-width: 240px;
+      display:grid;
+      justify-items:center;
+      gap: 10px;
+      min-width: 180px;
       justify-content:center;
     }
     .feat .ico{
-      width:42px; height:42px;
-      border-radius: 14px;
-      border:1px solid rgba(46,229,157,.20);
+      width:34px; height:34px;
+      border-radius: 10px;
+      border:1px solid rgba(255,255,255,.16);
       background:
-        radial-gradient(100% 140% at 50% 0%, rgba(46,229,157,.22) 0%, rgba(46,229,157,.08) 60%, rgba(46,229,157,.04) 100%);
-      box-shadow: 0 0 40px rgba(46,229,157,.12);
+        radial-gradient(100% 140% at 50% 0%, rgba(255,255,255,.14) 0%, rgba(255,255,255,.05) 60%, rgba(255,255,255,.03) 100%);
+      box-shadow: 0 0 28px rgba(0,0,0,.28);
       display:grid;
       place-items:center;
       flex:0 0 auto;
     }
-    .feat svg{ width:20px; height:20px; opacity:.92; }
+    .feat svg{ width:16px; height:16px; opacity:.9; }
     .feat .txt{
-      text-align:left;
+      text-align:center;
       line-height:1.2;
     }
     .feat .title{
-      font-size:14px;
-      font-weight:650;
+      font-size:13px;
+      font-weight:560;
+      color: rgba(228,234,241,.92);
+      letter-spacing:.01em;
+    }
+    .benefit-row{
+      margin: 20px auto 2px;
+      max-width: 640px;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 18px;
+      text-align:center;
+    }
+    .benefit{
+      color: rgba(232,238,245,.92);
+    }
+    .benefit .t{
+      font-size: 24px;
+      line-height:1.1;
+      font-weight:320;
       letter-spacing:-.01em;
     }
-    .feat .sub{
-      margin-top:6px;
-      font-size:12.5px;
-      color: rgba(154,164,178,.92);
+    .benefit .s{
+      margin-top:8px;
+      font-size:12px;
+      color: rgba(162,172,184,.9);
     }
 
     /* pricing card */
@@ -539,7 +546,8 @@
       .navlinks{ gap:18px; }
       .navlinks a{ padding:6px 0; }
       .feat{ min-width: 0; }
-      .field-ui{ width:min(66%, 370px); }
+      .app-shell{ grid-template-columns: 140px 1fr; }
+      .phone{ right:6%; }
     }
     @media (max-width: 640px){
       .navlinks{ display:none; }
@@ -547,10 +555,18 @@
       .cta{ width: 100%; justify-content:center; }
       .laptop{ padding: 14px; }
       .screen .fallback{ padding: 12px; }
-      .field-ui{
-        width:72%;
+      .app-shell{
+        grid-template-columns: 1fr;
       }
-      .field-ui .body{
+      .app-side{
+        display:none;
+      }
+      .phone{
+        width:76px;
+        height:156px;
+        right:4%;
+      }
+      .benefit-row{
         grid-template-columns: 1fr;
       }
       .price-card{ padding: 22px 18px; }
@@ -590,14 +606,11 @@
     <main id="top">
       <section class="hero">
         <div class="container">
-          <h1>
-            Geometry-Driven Estimating <span class="thin">for</span><br/>
-            Landscape Contractors
-          </h1>
-          <p>Turn SketchUp models into build-ready cost plans in minutes.</p>
+          <h1>Optimize Your Operations with FIELD</h1>
+          <p>Advanced software solutions for your team.</p>
 
-          <a class="cta" href="/pricing.html" aria-label="Start subscription">
-            <span>Start Subscription</span>
+          <a class="cta" href="/pricing.html" aria-label="Get started">
+            <span>Get Started</span>
             <span class="arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M5 12h12" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
@@ -606,33 +619,69 @@
             </span>
           </a>
 
-          <div class="laptop-wrap" aria-label="Product preview">
+          <div class="feature-row" id="features">
+            <div class="feat">
+              <div class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16M4 12h16M4 17h16" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="txt">
+                <div class="title">Streamline Workflows</div>
+              </div>
+            </div>
+
+            <div class="feat">
+              <div class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 4v16M5 11l7-7 7 7" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="txt">
+                <div class="title">Real-Time Insights</div>
+              </div>
+            </div>
+
+            <div class="feat">
+              <div class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="7" y="3" width="10" height="18" rx="2.5" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
+                  <path d="M10 7h4" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="txt">
+                <div class="title">Mobile &amp; Desktop Access</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="laptop-wrap device-scene" aria-label="Product preview">
             <div class="laptop">
               <div class="screen">
                 <div class="fallback">
-                  <div class="garden-canvas" aria-hidden="true">
-                    <div class="bed a"></div>
-                    <div class="bed b"></div>
-                    <div class="path"></div>
-                  </div>
-                  <div class="field-ui" aria-label="Field UI open over garden plan">
-                    <div class="bar">
-                      <span>FIELD - Project Estimator</span>
-                      <div class="dot-row" aria-hidden="true">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                      </div>
+                  <div class="app-shell" aria-label="Field UI">
+                    <div class="app-side">
+                      <div class="line g"></div>
+                      <div class="line"></div>
+                      <div class="line"></div>
+                      <div class="line"></div>
+                      <div class="line"></div>
+                      <div class="line"></div>
                     </div>
-                    <div class="body">
-                      <div class="card">
-                        <div class="line g"></div>
-                        <div class="line"></div>
-                        <div class="line s"></div>
-                      </div>
-                      <div class="card">
-                        <div class="line"></div>
-                        <div class="line g s"></div>
+                    <div class="app-main">
+                      <div class="app-top"></div>
+                      <div class="app-grid">
+                        <div class="app-card">
+                          <div class="line g"></div>
+                          <div class="line"></div>
+                          <div class="line"></div>
+                          <div class="line s"></div>
+                        </div>
+                        <div class="app-card">
+                          <div class="line"></div>
+                          <div class="line g"></div>
+                          <div class="line s"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -640,47 +689,25 @@
               </div>
 
               <div class="laptop-base" aria-hidden="true"></div>
+              <div class="phone" aria-hidden="true">
+                <div class="line g"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line g"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </div>
             </div>
           </div>
 
-          <div class="feature-row" id="features">
-            <div class="feat">
-              <div class="ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M4 7h16M4 12h16M4 17h16" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M7 7v10" stroke="rgba(46,229,157,.85)" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="txt">
-                <div class="title">Deterministic<br/>Quantity Extraction</div>
-              </div>
+          <div class="benefit-row">
+            <div class="benefit">
+              <div class="t">Easily Manage<br/>Your Projects</div>
+              <div class="s">Keep your projects organized and on track.</div>
             </div>
-
-            <div class="feat">
-              <div class="ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M12 3v18" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M16.5 7.5c-.8-1.2-2.2-2-4.5-2-2.8 0-4.5 1.2-4.5 3s1.7 2.6 4.5 3c3 .4 4.5 1.2 4.5 3s-1.8 3-4.5 3c-2.3 0-3.8-.8-4.6-2"
-                        stroke="rgba(46,229,157,.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div class="txt">
-                <div class="title">Live Cost & Margin<br/>Control</div>
-              </div>
-            </div>
-
-            <div class="feat">
-              <div class="ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M7 3h10v4H7V3Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
-                  <path d="M6 7h12v14H6V7Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
-                  <path d="M8.5 11h7M8.5 14.5h7M8.5 18h5"
-                        stroke="rgba(46,229,157,.85)" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="txt">
-                <div class="title">Build-Ready<br/>BOQ Export</div>
-              </div>
+            <div class="benefit">
+              <div class="t">Analyze &amp; Report<br/>Performance</div>
+              <div class="s">Gain actionable insights to boost productivity.</div>
             </div>
           </div>
 
