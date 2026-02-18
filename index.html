@@ -270,34 +270,124 @@
       filter: contrast(1.05) saturate(1.06);
     }
 
-    /* fallback UI skeleton if no image */
+    /* built-in garden design with FIELD UI on top */
     .screen .fallback{
       position:absolute; inset:0;
-      display:grid;
-      grid-template-columns: 240px 1fr 280px;
-      gap:14px;
-      padding: 16px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:flex-end;
+      padding: 18px;
       background:
-        radial-gradient(100% 140% at 50% 0%, rgba(46,229,157,.10) 0%, rgba(46,229,157,0) 60%),
-        linear-gradient(180deg, rgba(11,15,20,.9) 0%, rgba(9,12,16,.9) 100%);
+        radial-gradient(120% 140% at 40% 10%, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 55%),
+        linear-gradient(180deg, #233521 0%, #1b2a1b 48%, #131f14 100%);
     }
-    .panel{
-      border:1px solid rgba(255,255,255,.08);
-      border-radius: 12px;
-      background: rgba(255,255,255,.04);
+    .garden-canvas{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,.05) 0px,
+          rgba(255,255,255,.05) 1px,
+          rgba(255,255,255,0) 1px,
+          rgba(255,255,255,0) 38px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,.05) 0px,
+          rgba(255,255,255,.05) 1px,
+          rgba(255,255,255,0) 1px,
+          rgba(255,255,255,0) 38px
+        );
+      opacity:.46;
+    }
+    .bed{
+      position:absolute;
+      border:1px solid rgba(255,255,255,.25);
+      background: rgba(46,229,157,.13);
+      box-shadow: 0 0 40px rgba(46,229,157,.08) inset;
+    }
+    .bed.a{
+      left:8%;
+      top:16%;
+      width:35%;
+      height:30%;
+      border-radius: 40px 120px 50px 90px;
+      transform: rotate(-7deg);
+    }
+    .bed.b{
+      left:18%;
+      bottom:12%;
+      width:42%;
+      height:30%;
+      border-radius: 110px 60px 90px 50px;
+      transform: rotate(8deg);
+    }
+    .path{
+      position:absolute;
+      right:10%;
+      top:10%;
+      width:40%;
+      height:74%;
+      border-radius: 120px;
+      border:2px solid rgba(240,246,255,.55);
+      opacity:.55;
+      filter: blur(.2px);
+    }
+    .field-ui{
+      position:relative;
+      z-index:2;
+      width:min(54%, 410px);
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.16);
+      background: linear-gradient(180deg, rgba(12,16,23,.94) 0%, rgba(8,12,18,.94) 100%);
+      box-shadow: 0 24px 48px rgba(0,0,0,.42);
+      backdrop-filter: blur(2px);
       overflow:hidden;
     }
-    .panel .row{ height:12px; margin: 12px; border-radius: 999px; background: rgba(255,255,255,.08); }
-    .panel .row.w{ width:78%; }
-    .panel .row.m{ width:62%; }
-    .panel .row.s{ width:46%; }
-    .panel.big{ background: rgba(255,255,255,.03); }
-    .panel.big .fill{
-      height: 62%;
-      margin: 12px;
-      border-radius: 12px;
-      background: rgba(255,255,255,.05);
+    .field-ui .bar{
+      height:34px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 12px;
+      color:rgba(255,255,255,.88);
+      font-size:12px;
+      font-weight:600;
+      letter-spacing:.02em;
     }
+    .field-ui .dot-row{
+      display:flex;
+      gap:6px;
+    }
+    .field-ui .dot{
+      width:8px; height:8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.35);
+    }
+    .field-ui .body{
+      padding:10px;
+      display:grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap:10px;
+    }
+    .field-ui .card{
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      min-height:74px;
+      padding:8px;
+    }
+    .field-ui .line{
+      height:8px;
+      margin-bottom:8px;
+      border-radius:999px;
+      background: rgba(255,255,255,.18);
+    }
+    .field-ui .line.g{ background: rgba(46,229,157,.42); }
+    .field-ui .line.s{ width:60%; }
 
     .laptop-base{
       margin: 16px auto 0;
@@ -449,14 +539,20 @@
       .navlinks{ gap:18px; }
       .navlinks a{ padding:6px 0; }
       .feat{ min-width: 0; }
-      .screen .fallback{ grid-template-columns: 200px 1fr; }
-      .screen .fallback .right{ display:none; }
+      .field-ui{ width:min(66%, 370px); }
     }
     @media (max-width: 640px){
       .navlinks{ display:none; }
       .hero{ padding-top: 44px; }
       .cta{ width: 100%; justify-content:center; }
       .laptop{ padding: 14px; }
+      .screen .fallback{ padding: 12px; }
+      .field-ui{
+        width:72%;
+      }
+      .field-ui .body{
+        grid-template-columns: 1fr;
+      }
       .price-card{ padding: 22px 18px; }
       .foot{ justify-content:center; text-align:center; }
       .foot .links{ justify-content:center; }
@@ -486,7 +582,7 @@
             <a href="#contact">Contact</a>
           </nav>
 
-          <a class="login" href="/login.html">Login</a>
+          <a class="login" href="/privacy.html">Privacy Policy</a>
         </div>
       </div>
     </header>
@@ -513,36 +609,32 @@
           <div class="laptop-wrap" aria-label="Product preview">
             <div class="laptop">
               <div class="screen">
-                <!-- Preferred: real screenshot -->
-                <!-- Put your actual image at: assets/field-ui.jpg -->
-                <img
-                  src="assets/field-ui.jpg"
-                  alt="FIELD app preview"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-                />
-
-                <!-- Fallback skeleton UI (auto-shown if image fails to load) -->
-                <div class="fallback" style="display:none;">
-                  <div class="panel">
-                    <div class="row w"></div>
-                    <div class="row m"></div>
-                    <div class="row w"></div>
-                    <div class="row s"></div>
-                    <div class="row m"></div>
-                    <div class="row s"></div>
-                    <div class="row w"></div>
+                <div class="fallback">
+                  <div class="garden-canvas" aria-hidden="true">
+                    <div class="bed a"></div>
+                    <div class="bed b"></div>
+                    <div class="path"></div>
                   </div>
-                  <div class="panel big">
-                    <div class="row w"></div>
-                    <div class="fill"></div>
-                    <div class="row m"></div>
-                  </div>
-                  <div class="panel right">
-                    <div class="row w"></div>
-                    <div class="row m"></div>
-                    <div class="row s"></div>
-                    <div class="row w"></div>
-                    <div class="row m"></div>
+                  <div class="field-ui" aria-label="Field UI open over garden plan">
+                    <div class="bar">
+                      <span>FIELD - Project Estimator</span>
+                      <div class="dot-row" aria-hidden="true">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                      </div>
+                    </div>
+                    <div class="body">
+                      <div class="card">
+                        <div class="line g"></div>
+                        <div class="line"></div>
+                        <div class="line s"></div>
+                      </div>
+                      <div class="card">
+                        <div class="line"></div>
+                        <div class="line g s"></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
