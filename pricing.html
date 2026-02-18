@@ -130,10 +130,11 @@
       display: inline-block;
       background: #ffffff;
       color: #0f1115;
-      text-decoration: none;
       font-weight: 600;
       padding: 12px 20px;
       border-radius: 8px;
+      border: none;
+      cursor: pointer;
       transition: transform 0.15s ease, opacity 0.2s ease;
     }
 
@@ -148,6 +149,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <nav class="nav" aria-label="Primary">
@@ -174,10 +176,39 @@
             <li>Excel export</li>
             <li>Ongoing updates</li>
           </ul>
-          <a class="btn" href="https://buy.stripe.com/test_3cIcN62mvcsP8Ey4NNeIw00">Start Subscription</a>
+          <button class="btn" id="subscribe-btn">Start Subscription</button>
         </article>
       </section>
     </main>
   </div>
+
+  <script>
+    async function startCheckout() {
+      try {
+        const response = await fetch("/api/create-checkout-session", {
+          method: "POST",
+        });
+
+        if (!response.ok) {
+          throw new Error("Server error");
+        }
+
+        const data = await response.json();
+
+        if (!data.url) {
+          throw new Error("No checkout URL returned");
+        }
+
+        window.location.href = data.url;
+      } catch (err) {
+        console.error("Checkout error:", err);
+        alert("Checkout failed. Check console.");
+      }
+    }
+
+    document
+      .getElementById("subscribe-btn")
+      .addEventListener("click", startCheckout);
+  </script>
 </body>
 </html>
