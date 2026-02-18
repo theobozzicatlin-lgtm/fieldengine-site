@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FIELD | Home</title>
+  <title>FIELD | Pricing</title>
   <style>
     :root {
       --bg: #0f1115;
       --panel: #151922;
+      --card: #171c26;
       --text: #f4f7fb;
       --muted: #aab2c0;
       --border: #2a303b;
@@ -68,27 +69,62 @@
       min-height: calc(100vh - 120px);
       display: grid;
       place-items: center;
-      text-align: center;
       padding: 56px 0 72px;
     }
 
-    .hero {
-      max-width: 760px;
+    .pricing-wrap {
+      width: min(560px, 100%);
+      text-align: center;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      line-height: 1.12;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      line-height: 1.15;
       letter-spacing: -0.02em;
     }
 
-    .subheading {
-      margin: 18px auto 30px;
-      max-width: 620px;
+    .subtext {
+      margin: 14px auto 28px;
       color: var(--muted);
       font-size: 1.02rem;
+      max-width: 520px;
     }
+
+    .card {
+      text-align: left;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .plan-name {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #ffffff;
+    }
+
+    .price {
+      margin: 6px 0 18px;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .price span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 0 0 22px;
+      padding-left: 18px;
+      color: var(--text);
+    }
+
+    li { margin: 8px 0; }
 
     .btn {
       display: inline-block;
@@ -124,13 +160,22 @@
     </nav>
 
     <main>
-      <section class="hero">
-        <h1>Geometry-Driven Estimating for Landscape Contractors</h1>
-        <p class="subheading">
-          FIELD helps landscape contractors turn project geometry into clear, accurate estimates.
-          Build faster quotes, track costs confidently, and keep every project on budget.
-        </p>
-        <a class="btn" href="pricing.html">View Pricing</a>
+      <section class="pricing-wrap">
+        <h1>Simple Pricing</h1>
+        <p class="subtext">Professional estimating software built for landscape contractors.</p>
+
+        <article class="card" aria-label="FIELD Pro plan">
+          <h2 class="plan-name">FIELD Pro</h2>
+          <p class="price">£59.00 <span>/ month</span></p>
+          <ul>
+            <li>Geometry-based material takeoffs</li>
+            <li>Automated subframe calculations</li>
+            <li>Live project budget tracking</li>
+            <li>Excel export</li>
+            <li>Ongoing updates</li>
+          </ul>
+          <a class="btn" href="https://buy.stripe.com/test_3cIcN62mvcsP8Ey4NNeIw00">Start Subscription</a>
+        </article>
       </section>
     </main>
   </div>
