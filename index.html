@@ -1,315 +1,665 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FIELD — Geometry-Driven Estimating</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --bg: #07090d;
-      --panel: #0f1319;
-      --accent: #2ee59d;
-      --accent-soft: rgba(46,229,157,0.15);
-      --text: #ffffff;
-      --muted: #9aa4b2;
-      --border: rgba(255,255,255,0.08);
+    :root{
+      --bg:#07090d;
+      --bg2:#05070a;
+      --panel:#0f1319;
+      --panel2:#0b0f14;
+      --text:#ffffff;
+      --muted:#9aa4b2;
+      --muted2:#768193;
+
+      --accent:#2ee59d;
+      --accent2:#1bbf82;
+      --glow:rgba(46,229,157,.18);
+
+      --border:rgba(255,255,255,.08);
+      --border2:rgba(255,255,255,.12);
+
+      --shadow: 0 40px 90px rgba(0,0,0,.75);
+      --shadow2: 0 18px 50px rgba(0,0,0,.6);
+
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 10px;
+
+      --max: 1180px;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(900px 420px at 50% 12%, rgba(46,229,157,.14) 0%, rgba(46,229,157,0) 65%),
+                  radial-gradient(1200px 700px at 50% 0%, rgba(255,255,255,.06) 0%, rgba(255,255,255,0) 58%),
+                  linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      overflow-x:hidden;
     }
 
-    body {
-      background: radial-gradient(circle at 50% 20%, #0f1a18 0%, #07090d 60%);
-      color: var(--text);
-      line-height: 1.6;
+    /* soft fog / vignette */
+    .stage{
+      position:relative;
+      min-height:100%;
+      isolation:isolate;
+    }
+    .stage::before{
+      content:"";
+      position:absolute; inset:-200px -200px -200px -200px;
+      background:
+        radial-gradient(700px 420px at 48% 28%, rgba(255,255,255,.08), rgba(255,255,255,0) 60%),
+        radial-gradient(900px 520px at 52% 42%, rgba(46,229,157,.10), rgba(46,229,157,0) 62%),
+        radial-gradient(700px 420px at 30% 50%, rgba(255,255,255,.05), rgba(255,255,255,0) 58%),
+        radial-gradient(800px 500px at 70% 55%, rgba(255,255,255,.04), rgba(255,255,255,0) 60%);
+      filter: blur(22px);
+      opacity:.55;
+      z-index:-2;
+      pointer-events:none;
+    }
+    .stage::after{
+      /* vignette */
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(1200px 700px at 50% 35%, rgba(0,0,0,0) 0%, rgba(0,0,0,.72) 70%, rgba(0,0,0,.86) 100%);
+      z-index:-1;
+      pointer-events:none;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 28px 8%;
+    /* subtle grain */
+    .grain{
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.12;
+      mix-blend-mode:overlay;
+      z-index:999;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
     }
 
-    .logo {
-      font-weight: 600;
-      letter-spacing: 2px;
-      font-size: 18px;
+    a{ color:inherit; text-decoration:none; }
+    .container{
+      width: min(var(--max), calc(100% - 48px));
+      margin:0 auto;
     }
 
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      margin-left: 32px;
-      font-weight: 500;
-      transition: 0.2s ease;
+    /* header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      padding: 18px 0;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(7,9,13,.75) 0%, rgba(7,9,13,.35) 100%);
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
-
-    nav a:hover {
-      color: var(--accent);
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
     }
-
-    .hero {
-      text-align: center;
-      padding: 80px 8% 60px;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      letter-spacing:.18em;
+      font-weight:600;
+      font-size:15px;
+      color:rgba(255,255,255,.92);
     }
+    .brand svg{ width:26px; height:26px; flex:0 0 auto; }
+    .brand .wordmark{ transform: translateY(1px); }
 
-    .hero h1 {
-      font-size: 48px;
-      font-weight: 600;
-      margin-bottom: 20px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      color:rgba(255,255,255,.68);
+      font-weight:500;
+      font-size:14px;
     }
-
-    .hero p {
-      font-size: 18px;
-      color: var(--muted);
-      margin-bottom: 40px;
+    .navlinks a{
+      position:relative;
+      padding:8px 2px;
+      transition: color .2s ease;
     }
-
-    .cta-btn {
-      background: linear-gradient(135deg, var(--accent), #1bbf82);
-      color: #000;
-      padding: 16px 40px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      box-shadow: 0 0 30px var(--accent-soft);
-      transition: 0.25s ease;
+    .navlinks a:hover{ color:rgba(255,255,255,.92); }
+    .navlinks a::after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:2px;
+      height:1px;
+      background: linear-gradient(90deg, rgba(46,229,157,0), rgba(46,229,157,.8), rgba(46,229,157,0));
+      opacity:0;
+      transform: translateY(2px);
+      transition: .2s ease;
     }
+    .navlinks a:hover::after{ opacity:.8; transform: translateY(0); }
 
-    .cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 50px var(--accent-soft);
-    }
-
-    .laptop-section {
-      display: flex;
-      justify-content: center;
-      margin-top: 80px;
-    }
-
-    .laptop {
-      background: var(--panel);
-      border-radius: 16px;
-      padding: 20px;
-      width: 900px;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.7);
-      border: 1px solid var(--border);
-    }
-
-    .screen {
-      background: #0b0f14;
+    .login{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:38px;
+      padding:0 16px;
       border-radius: 10px;
-      padding: 20px;
-      height: 420px;
-      display: flex;
-      gap: 20px;
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
+      color:rgba(255,255,255,.88);
+      font-weight:600;
+      font-size:13px;
+      transition: transform .15s ease, border-color .2s ease, background .2s ease;
+    }
+    .login:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.22);
+      background: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.04) 100%);
     }
 
-    .sidebar {
-      width: 200px;
-      background: #10151c;
-      border-radius: 8px;
-      padding: 15px;
+    /* hero */
+    .hero{
+      padding: 56px 0 20px;
+      text-align:center;
     }
-
-    .sidebar div {
-      height: 12px;
-      background: rgba(255,255,255,0.08);
-      margin-bottom: 14px;
-      border-radius: 4px;
+    .hero h1{
+      margin:0 auto;
+      max-width: 980px;
+      font-size: clamp(34px, 4.2vw, 58px);
+      letter-spacing:-.02em;
+      line-height:1.05;
+      font-weight:650;
     }
-
-    .main-ui {
-      flex: 1;
-      background: #11161d;
-      border-radius: 8px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+    .hero h1 .thin{
+      font-weight:420;
+      color: rgba(255,255,255,.86);
     }
-
-    .ui-block {
-      background: rgba(255,255,255,0.06);
-      height: 50px;
-      border-radius: 6px;
-    }
-
-    .ui-large {
-      flex: 1;
-      background: rgba(255,255,255,0.04);
-      border-radius: 6px;
-    }
-
-    .features {
-      display: flex;
-      justify-content: center;
-      gap: 60px;
-      margin-top: 80px;
-      text-align: center;
-    }
-
-    .feature {
-      max-width: 250px;
-    }
-
-    .feature h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-
-    .feature p {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .pricing {
-      margin-top: 120px;
-      text-align: center;
-      padding-bottom: 120px;
-    }
-
-    .price-box {
-      background: var(--panel);
-      display: inline-block;
-      padding: 50px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      box-shadow: 0 0 60px var(--accent-soft);
-    }
-
-    .price-box h2 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
-
-    .price-box span {
+    .hero p{
+      margin: 16px auto 28px;
+      max-width: 760px;
       font-size: 16px;
-      color: var(--muted);
+      color: rgba(154,164,178,.92);
+      line-height:1.6;
     }
 
-    .price-box ul {
-      list-style: none;
-      margin: 30px 0;
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      height:48px;
+      padding:0 22px 0 22px;
+      border-radius: 14px;
+      border:1px solid rgba(46,229,157,.28);
+      background:
+        radial-gradient(90% 140% at 50% 0%, rgba(46,229,157,.35) 0%, rgba(46,229,157,.10) 55%, rgba(46,229,157,.05) 100%),
+        linear-gradient(135deg, rgba(46,229,157,.18) 0%, rgba(27,191,130,.10) 60%, rgba(255,255,255,.04) 100%);
+      color: rgba(255,255,255,.92);
+      font-weight:650;
+      box-shadow: 0 0 0 1px rgba(46,229,157,.10) inset, 0 24px 60px rgba(0,0,0,.55), 0 0 60px var(--glow);
+      transition: transform .18s ease, box-shadow .22s ease, border-color .22s ease;
+      user-select:none;
+    }
+    .cta:hover{
+      transform: translateY(-2px);
+      border-color: rgba(46,229,157,.42);
+      box-shadow: 0 0 0 1px rgba(46,229,157,.14) inset, 0 30px 70px rgba(0,0,0,.60), 0 0 80px rgba(46,229,157,.24);
+    }
+    .cta .arrow{
+      display:inline-flex;
+      width:20px; height:20px;
+      opacity:.9;
     }
 
-    .price-box li {
-      margin-bottom: 12px;
-      color: var(--muted);
+    /* laptop */
+    .laptop-wrap{
+      margin: 34px auto 0;
+      display:flex;
+      justify-content:center;
+    }
+    .laptop{
+      width: min(980px, 100%);
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(120% 200% at 50% 0%, rgba(255,255,255,.06) 0%, rgba(255,255,255,0) 60%),
+        linear-gradient(180deg, rgba(15,19,25,.92) 0%, rgba(10,12,16,.92) 100%);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position:relative;
+    }
+    .laptop::before{
+      content:"";
+      position:absolute;
+      left:10%;
+      right:10%;
+      bottom:-22px;
+      height:48px;
+      background: radial-gradient(60% 100% at 50% 50%, rgba(46,229,157,.24) 0%, rgba(46,229,157,0) 70%);
+      filter: blur(10px);
+      opacity:.75;
+      pointer-events:none;
     }
 
-    footer {
-      text-align: center;
-      padding: 40px;
-      color: var(--muted);
-      font-size: 14px;
-      border-top: 1px solid var(--border);
+    .screen{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+      background: #06080b;
+      aspect-ratio: 16 / 9;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.35) inset;
+      position:relative;
     }
 
-    footer a {
-      color: var(--muted);
-      text-decoration: none;
-      margin: 0 10px;
+    /* If you have a real UI screenshot, use it */
+    .screen img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      opacity:.95;
+      filter: contrast(1.05) saturate(1.06);
     }
 
-    footer a:hover {
-      color: var(--accent);
+    /* fallback UI skeleton if no image */
+    .screen .fallback{
+      position:absolute; inset:0;
+      display:grid;
+      grid-template-columns: 240px 1fr 280px;
+      gap:14px;
+      padding: 16px;
+      background:
+        radial-gradient(100% 140% at 50% 0%, rgba(46,229,157,.10) 0%, rgba(46,229,157,0) 60%),
+        linear-gradient(180deg, rgba(11,15,20,.9) 0%, rgba(9,12,16,.9) 100%);
+    }
+    .panel{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+    }
+    .panel .row{ height:12px; margin: 12px; border-radius: 999px; background: rgba(255,255,255,.08); }
+    .panel .row.w{ width:78%; }
+    .panel .row.m{ width:62%; }
+    .panel .row.s{ width:46%; }
+    .panel.big{ background: rgba(255,255,255,.03); }
+    .panel.big .fill{
+      height: 62%;
+      margin: 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.05);
     }
 
-    @media(max-width: 1000px){
-      .laptop {
-        width: 95%;
-      }
-      .hero h1 {
-        font-size: 36px;
-      }
-      .features {
-        flex-direction: column;
-        gap: 40px;
-      }
+    .laptop-base{
+      margin: 16px auto 0;
+      width: 62%;
+      height: 18px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.05) 100%);
+      opacity:.40;
+      filter: blur(.2px);
     }
 
+    /* feature row */
+    .feature-row{
+      margin: 26px auto 0;
+      display:flex;
+      justify-content:center;
+      gap: 46px;
+      flex-wrap:wrap;
+      color: rgba(255,255,255,.82);
+    }
+    .feat{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 240px;
+      justify-content:center;
+    }
+    .feat .ico{
+      width:42px; height:42px;
+      border-radius: 14px;
+      border:1px solid rgba(46,229,157,.20);
+      background:
+        radial-gradient(100% 140% at 50% 0%, rgba(46,229,157,.22) 0%, rgba(46,229,157,.08) 60%, rgba(46,229,157,.04) 100%);
+      box-shadow: 0 0 40px rgba(46,229,157,.12);
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+    }
+    .feat svg{ width:20px; height:20px; opacity:.92; }
+    .feat .txt{
+      text-align:left;
+      line-height:1.2;
+    }
+    .feat .title{
+      font-size:14px;
+      font-weight:650;
+      letter-spacing:-.01em;
+    }
+    .feat .sub{
+      margin-top:6px;
+      font-size:12.5px;
+      color: rgba(154,164,178,.92);
+    }
+
+    /* pricing card */
+    .pricing{
+      padding: 42px 0 64px;
+    }
+    .price-card{
+      margin: 36px auto 0;
+      width: min(720px, 100%);
+      border-radius: var(--radius-xl);
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(100% 160% at 50% 0%, rgba(46,229,157,.14) 0%, rgba(46,229,157,0) 55%),
+        linear-gradient(180deg, rgba(15,19,25,.86) 0%, rgba(10,12,16,.86) 100%);
+      box-shadow: 0 0 0 1px rgba(46,229,157,.10) inset, 0 0 90px rgba(46,229,157,.16), var(--shadow2);
+      padding: 26px 24px 22px;
+      text-align:center;
+      position:relative;
+    }
+    .price{
+      font-size: clamp(34px, 4vw, 52px);
+      letter-spacing:-.02em;
+      font-weight:720;
+      margin: 6px 0 8px;
+    }
+    .per{
+      font-weight:500;
+      font-size: 18px;
+      color: rgba(154,164,178,.92);
+    }
+    .divider{
+      height:1px;
+      width: 100%;
+      margin: 18px 0 16px;
+      background: linear-gradient(90deg, rgba(46,229,157,0), rgba(46,229,157,.35), rgba(46,229,157,0));
+      opacity:.9;
+    }
+    .bullets{
+      list-style:none;
+      padding:0;
+      margin: 0 0 18px;
+      display:grid;
+      gap:10px;
+      justify-content:center;
+      color: rgba(154,164,178,.95);
+      font-weight:520;
+    }
+    .bullets li{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      justify-content:center;
+    }
+    .check{
+      width:18px; height:18px;
+      display:inline-grid;
+      place-items:center;
+      border-radius:6px;
+      border:1px solid rgba(46,229,157,.28);
+      background: rgba(46,229,157,.10);
+      box-shadow: 0 0 30px rgba(46,229,157,.10);
+    }
+    .check svg{ width:12px; height:12px; }
+
+    /* footer */
+    footer{
+      padding: 26px 0 34px;
+      border-top:1px solid rgba(255,255,255,.06);
+      color: rgba(154,164,178,.85);
+      font-size: 12.5px;
+    }
+    .foot{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 18px;
+      flex-wrap:wrap;
+    }
+    .foot .links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .foot a{
+      color: rgba(154,164,178,.85);
+      transition: color .2s ease;
+    }
+    .foot a:hover{ color: rgba(255,255,255,.92); }
+
+    /* sections anchors */
+    section{ scroll-margin-top: 84px; }
+
+    /* responsive */
+    @media (max-width: 920px){
+      header{ position:sticky; }
+      .nav{ gap:12px; }
+      .navlinks{ gap:18px; }
+      .navlinks a{ padding:6px 0; }
+      .feat{ min-width: 0; }
+      .screen .fallback{ grid-template-columns: 200px 1fr; }
+      .screen .fallback .right{ display:none; }
+    }
+    @media (max-width: 640px){
+      .navlinks{ display:none; }
+      .hero{ padding-top: 44px; }
+      .cta{ width: 100%; justify-content:center; }
+      .laptop{ padding: 14px; }
+      .price-card{ padding: 22px 18px; }
+      .foot{ justify-content:center; text-align:center; }
+      .foot .links{ justify-content:center; }
+    }
   </style>
 </head>
+
 <body>
+  <div class="stage">
+    <div class="grain" aria-hidden="true"></div>
 
-<header>
-  <div class="logo">FIELD</div>
-  <nav>
-    <a href="#pricing">Pricing</a>
-    <a href="#contact">Contact</a>
-    <a href="#legals">Legals</a>
-  </nav>
-</header>
+    <header>
+      <div class="container">
+        <div class="nav">
+          <a class="brand" href="#top" aria-label="FIELD home">
+            <!-- Minimal geometric mark (matches the screenshot vibe). Replace with your real logo SVG if desired. -->
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 6.5C4 5.12 5.12 4 6.5 4H20v13.5c0 1.38-1.12 2.5-2.5 2.5H4V6.5Z" stroke="rgba(46,229,157,.9)" stroke-width="1.6"/>
+              <path d="M8 8h8v6H8V8Z" fill="rgba(46,229,157,.12)" stroke="rgba(46,229,157,.55)" stroke-width="1.2"/>
+            </svg>
+            <span class="wordmark">FIELD</span>
+          </a>
 
-<section class="hero">
-  <h1>Geometry-Driven Estimating for Landscape Contractors</h1>
-  <p>Turn SketchUp models into build-ready cost plans in minutes.</p>
-  <a href="#" class="cta-btn">Start Subscription</a>
+          <nav class="navlinks" aria-label="Primary">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+          </nav>
 
-  <div class="laptop-section">
-    <div class="laptop">
-      <div class="screen">
-        <div class="sidebar">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div class="main-ui">
-          <div class="ui-block"></div>
-          <div class="ui-large"></div>
-          <div class="ui-block"></div>
+          <a class="login" href="/login.html">Login</a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<section class="features">
-  <div class="feature">
-    <h3>Deterministic Quantity Extraction</h3>
-    <p>Precise geometry-driven calculations from real model data.</p>
-  </div>
-  <div class="feature">
-    <h3>Live Cost & Margin Control</h3>
-    <p>Material, labour and margin tracking in real time.</p>
-  </div>
-  <div class="feature">
-    <h3>Build-Ready BOQ Export</h3>
-    <p>Generate structured cost plans for contractors instantly.</p>
-  </div>
-</section>
+    <main id="top">
+      <section class="hero">
+        <div class="container">
+          <h1>
+            Geometry-Driven Estimating <span class="thin">for</span><br/>
+            Landscape Contractors
+          </h1>
+          <p>Turn SketchUp models into build-ready cost plans in minutes.</p>
 
-<section class="pricing" id="pricing">
-  <div class="price-box">
-    <h2>£59.00 / month</h2>
-    <span>Unlimited projects. Full estimating engine. Ongoing updates.</span>
-    <ul>
-      <li>✓ Unlimited Projects</li>
-      <li>✓ Full Estimating Engine</li>
-      <li>✓ Ongoing Updates</li>
-    </ul>
-    <a href="#" class="cta-btn">Start Subscription</a>
+          <a class="cta" href="/pricing.html" aria-label="Start subscription">
+            <span>Start Subscription</span>
+            <span class="arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h12" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M13 6l6 6-6 6" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          <div class="laptop-wrap" aria-label="Product preview">
+            <div class="laptop">
+              <div class="screen">
+                <!-- Preferred: real screenshot -->
+                <!-- Put your actual image at: assets/field-ui.jpg -->
+                <img
+                  src="assets/field-ui.jpg"
+                  alt="FIELD app preview"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+                />
+
+                <!-- Fallback skeleton UI (auto-shown if image fails to load) -->
+                <div class="fallback" style="display:none;">
+                  <div class="panel">
+                    <div class="row w"></div>
+                    <div class="row m"></div>
+                    <div class="row w"></div>
+                    <div class="row s"></div>
+                    <div class="row m"></div>
+                    <div class="row s"></div>
+                    <div class="row w"></div>
+                  </div>
+                  <div class="panel big">
+                    <div class="row w"></div>
+                    <div class="fill"></div>
+                    <div class="row m"></div>
+                  </div>
+                  <div class="panel right">
+                    <div class="row w"></div>
+                    <div class="row m"></div>
+                    <div class="row s"></div>
+                    <div class="row w"></div>
+                    <div class="row m"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="laptop-base" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="feature-row" id="features">
+            <div class="feat">
+              <div class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16M4 12h16M4 17h16" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M7 7v10" stroke="rgba(46,229,157,.85)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="txt">
+                <div class="title">Deterministic<br/>Quantity Extraction</div>
+              </div>
+            </div>
+
+            <div class="feat">
+              <div class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3v18" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M16.5 7.5c-.8-1.2-2.2-2-4.5-2-2.8 0-4.5 1.2-4.5 3s1.7 2.6 4.5 3c3 .4 4.5 1.2 4.5 3s-1.8 3-4.5 3c-2.3 0-3.8-.8-4.6-2"
+                        stroke="rgba(46,229,157,.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="txt">
+                <div class="title">Live Cost & Margin<br/>Control</div>
+              </div>
+            </div>
+
+            <div class="feat">
+              <div class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7 3h10v4H7V3Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M6 7h12v14H6V7Z" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M8.5 11h7M8.5 14.5h7M8.5 18h5"
+                        stroke="rgba(46,229,157,.85)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="txt">
+                <div class="title">Build-Ready<br/>BOQ Export</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="pricing" id="pricing">
+        <div class="container">
+          <div class="price-card">
+            <div class="price">£59.00 <span class="per">/ month</span></div>
+
+            <div class="divider" aria-hidden="true"></div>
+
+            <ul class="bullets" aria-label="Plan features">
+              <li>
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M6 12.5l3.2 3.2L18 7.9" stroke="rgba(46,229,157,.95)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                Unlimited Projects
+              </li>
+              <li>
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M6 12.5l3.2 3.2L18 7.9" stroke="rgba(46,229,157,.95)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                Full Estimating Engine
+              </li>
+              <li>
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M6 12.5l3.2 3.2L18 7.9" stroke="rgba(46,229,157,.95)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                Ongoing Updates
+              </li>
+            </ul>
+
+            <a class="cta" href="/pricing.html" aria-label="Start subscription from pricing card">
+              <span>Start Subscription</span>
+              <span class="arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12h12" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M13 6l6 6-6 6" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="container" style="padding: 0 0 38px; text-align:center;">
+        <div style="color: rgba(154,164,178,.9); font-size: 13.5px;">
+          Contact: <a href="mailto:hello@fieldsoftware.app" style="color: rgba(255,255,255,.88); border-bottom:1px solid rgba(46,229,157,.28);">hello@fieldsoftware.app</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="foot">
+          <div>© 2025 FIELD Software. All rights reserved.</div>
+          <div class="links">
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
-</section>
-
-<footer id="legals">
-  © 2025 FIELD Software. All rights reserved.
-  <br><br>
-  <a href="#">Privacy Policy</a> |
-  <a href="#">Terms & Conditions</a>
-</footer>
-
 </body>
 </html>
