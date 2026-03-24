@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FIELD | Legals</title>
+  <title>FIELD | Legal</title>
+
   <style>
     :root {
       --bg: #0f1115;
@@ -36,28 +37,19 @@
       border-radius: 10px;
       padding: 14px 18px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      align-items: center;
     }
 
     .nav-logo {
       font-weight: 700;
       letter-spacing: 0.08em;
-      color: #ffffff;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
     }
 
     .nav-links a {
       color: var(--text);
+      margin-left: 20px;
       text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.18s ease;
     }
 
     .nav-links a:hover {
@@ -69,92 +61,134 @@
     }
 
     h1 {
-      margin: 0 0 22px;
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
     }
 
     h2 {
-      margin: 28px 0 10px;
+      margin-top: 30px;
       font-size: 1.25rem;
-      line-height: 1.3;
     }
 
     p {
-      margin: 0 0 12px;
       color: var(--muted);
       max-width: 800px;
     }
 
     .meta {
-      margin-top: 24px;
-      padding-top: 18px;
+      margin-top: 30px;
       border-top: 1px solid var(--border);
-    }
-
-    @media (max-width: 640px) {
-      .container { width: min(1100px, calc(100% - 28px)); }
-      .nav { flex-wrap: wrap; justify-content: center; }
+      padding-top: 20px;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
-    <nav class="nav" aria-label="Primary">
+
+    <!-- NAV -->
+    <nav class="nav">
       <div class="nav-logo">FIELD</div>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="pricing.html">Pricing</a>
-        <a href="legals.html">Legals</a>
+        <a href="legals.html">Legal</a>
       </div>
     </nav>
 
     <main>
-      <section>
-        <h1>Legal Information</h1>
 
-        <h2>Privacy Policy</h2>
-        <p>
-          FIELD Engine collects only the information needed to provide estimating services,
-          including account details, project inputs, and support messages. We use this data to
-          operate the service, improve product performance, and respond to customer enquiries.
-          We do not sell personal data to third parties.
-        </p>
-        <p>
-          Where third-party providers are used (for example, secure payment and hosting services),
-          data is processed only for legitimate business purposes and with reasonable safeguards.
-        </p>
+      <h1>Legal Information</h1>
 
-        <h2>Terms of Service</h2>
-        <p>
-          FIELD Engine is provided by a UK sole trader on an as-is and as-available basis.
-          Users are responsible for reviewing and validating all project outputs before relying on
-          them for procurement, pricing, or construction decisions.
-        </p>
-        <p>
-          By using this service, you agree not to misuse the platform or attempt unauthorized access.
-          We may suspend access where necessary to protect service reliability, security, or legal compliance.
-        </p>
+      <!-- PRIVACY -->
+      <h2>Privacy Policy</h2>
+      <p>
+        FIELD Engine collects only the information necessary to provide its services,
+        including account details, project data, and support communications.
+      </p>
+      <p>
+        Data is processed under the lawful basis of contractual necessity to deliver the service.
+      </p>
+      <p>
+        We use third-party providers such as hosting services and Stripe for payment processing.
+        These providers process data securely and only for legitimate business purposes.
+      </p>
+      <p>
+        We do not sell personal data to third parties.
+      </p>
+      <p>
+        Data is retained only as long as necessary to operate the service and comply with legal obligations.
+      </p>
+      <p>
+        Users have the right to request access, correction, or deletion of their personal data.
+        Requests can be made via support@fieldengine.io.
+      </p>
 
-        <h2>Cookies</h2>
-        <p>
-          We use essential cookies and similar technologies to keep sessions secure, remember basic
-          preferences, and monitor service performance. We may also use limited analytics to understand
-          site usage and improve user experience.
-        </p>
-        <p>
-          You can control cookies through your browser settings, although disabling some cookies may
-          affect how the service functions.
-        </p>
+      <!-- PAYMENTS -->
+      <h2>Payments & Subscriptions</h2>
+      <p>
+        Payments are securely processed via Stripe. We do not store or have access to full payment details.
+      </p>
+      <p>
+        Subscriptions are billed on a recurring basis and continue until cancelled.
+      </p>
 
-        <div class="meta">
-          <p><strong>Business name:</strong> FIELD Engine</p>
-          <p><strong>Jurisdiction:</strong> England &amp; Wales</p>
-          <p><strong>Contact email:</strong> support@fieldengine.io</p>
-        </div>
-      </section>
+      <!-- REFUNDS -->
+      <h2>Refund Policy</h2>
+      <p>
+        Subscription fees are non-refundable unless required by law.
+        Users may cancel at any time, and access will continue until the end of the billing period.
+      </p>
+
+      <!-- TERMS -->
+      <h2>Terms of Service</h2>
+      <p>
+        FIELD Engine is provided on an "as-is" and "as-available" basis.
+      </p>
+      <p>
+        Users are responsible for reviewing and validating all outputs before relying on them
+        for procurement, pricing, or construction decisions.
+      </p>
+      <p>
+        You agree not to misuse the service or attempt unauthorised access.
+        We reserve the right to suspend access where necessary.
+      </p>
+
+      <!-- LIABILITY -->
+      <h2>Limitation of Liability</h2>
+      <p>
+        To the fullest extent permitted by law, FIELD Engine shall not be liable for any indirect,
+        incidental, or consequential damages arising from use of the service.
+      </p>
+      <p>
+        All outputs are provided for guidance only and must be independently verified.
+      </p>
+
+      <!-- WARRANTY -->
+      <h2>No Warranty</h2>
+      <p>
+        The service is provided without warranties of any kind, including accuracy,
+        reliability, or fitness for a particular purpose.
+      </p>
+
+      <!-- COOKIES -->
+      <h2>Cookies</h2>
+      <p>
+        We use essential cookies to maintain secure sessions and basic functionality.
+      </p>
+      <p>
+        If analytics tools are introduced, this policy will be updated accordingly.
+      </p>
+
+      <!-- META -->
+      <div class="meta">
+        <p><strong>Operator:</strong> Theo Bozzi Catlin trading as FIELD Engine</p>
+        <p><strong>Jurisdiction:</strong> England &amp; Wales</p>
+        <p><strong>Contact:</strong> support@fieldengine.io</p>
+      </div>
+
     </main>
+
   </div>
 </body>
 </html>
