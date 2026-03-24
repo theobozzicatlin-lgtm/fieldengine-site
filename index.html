@@ -24,26 +24,34 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
-  padding: 16px 20px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid #2a2a2a;
-  border-radius: 14px;
-  backdrop-filter: blur(6px);
+  margin-bottom: 20px;
+  padding: 10px 0;
+
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 
 /* LEFT BRAND */
 .brand-left {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
 }
 
 .brand-logo {
-  width: 120px;   /* ← BIG jump */
+  width: 160px;   /* ← bigger again */
   height: auto;
 
-  filter: drop-shadow(0 0 24px rgba(124,255,178,0.35));
+  filter: drop-shadow(0 0 30px rgba(124,255,178,0.25));
+}
+
+.brand-name {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+
+  color: #eaeaea;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -240,6 +248,12 @@
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
   }
+  .hero-top {
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  color: #7CFFB2;
+  margin-bottom: 18px;
+}
 
 </style>
 </head>
@@ -264,7 +278,9 @@
   <!-- HERO -->
   <div class="hero">
 
-   
+   <div class="hero-top">
+  <span>FIELD ENGINE</span>
+</div>
 
     <h1>Design. Cost. Quote — Instantly.</h1>
 
