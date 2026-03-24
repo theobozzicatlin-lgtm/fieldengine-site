@@ -20,12 +20,18 @@
   }
 
   /* HEADER */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 60px;
-  }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 80px; /* more breathing room */
+}
+
+  .logo {
+  display: flex;
+  align-items: center;
+  padding-left: 4px;
+}
 
   .logo {
   display: flex;
@@ -33,9 +39,9 @@
 }
 
 .logo img {
-  height: 26px;
+  height: 48px;   /* ← BIG change */
   opacity: 0.95;
-  filter: drop-shadow(0 0 6px rgba(124,255,178,0.25));
+  filter: drop-shadow(0 0 10px rgba(124,255,178,0.25));
   transition: 0.2s ease;
 }
 
