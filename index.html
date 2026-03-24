@@ -30,7 +30,7 @@
     .header-inner {
       max-width: 1260px;
       margin: 0 auto;
-      padding: 18px 24px;
+      padding: 20px 24px;
     }
 
     .header {
@@ -87,17 +87,30 @@
       text-align: center;
     }
 
+    .hero-content {
+      max-width: 760px;
+      margin: 0 auto 44px;
+    }
+
     h1 {
       font-size: 68px;
-      margin-bottom: 16px;
-      letter-spacing: -1.5px;
+      margin-bottom: 18px;
+      letter-spacing: -1.1px;
       line-height: 1.05;
     }
 
     .sub {
       color: #9aa3af;
       font-size: 18px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .trust-line {
+      color: #7f8793;
+      font-size: 14px;
+      margin: 0;
+      letter-spacing: 0.01em;
     }
 
     .proof {
@@ -109,9 +122,19 @@
 
     /* VIDEO */
     .video-box {
-      margin: 60px auto;
+      margin: 0 auto;
       max-width: 1000px;
       position: relative;
+    }
+
+    .video-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #8b949e;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+      text-align: left;
     }
 
     .video-box video {
@@ -235,15 +258,19 @@
   <div class="container">
     <!-- HERO -->
     <div class="hero">
-      <h1>Design. Cost. Quote — Instantly.</h1>
+      <div class="hero-content">
+        <h1>Design. Cost. Quote — Instantly.</h1>
 
-      <p class="sub">
-        Live landscape estimating inside SketchUp.
-        No spreadsheets. No guesswork.
-      </p>
+        <p class="sub">
+          Live landscape estimating inside SketchUp.
+          No spreadsheets. No guesswork.
+        </p>
+        <p class="trust-line">Used by landscape contractors on £20k–£500k projects.</p>
+      </div>
 
       <!-- VIDEO -->
       <div class="video-box">
+        <p class="video-label">Live inside SketchUp</p>
         <video autoplay muted loop playsinline preload="auto" controls>
           <source src="./demo3.mp4" type="video/mp4" />
         </video>
