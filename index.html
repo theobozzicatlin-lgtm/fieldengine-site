@@ -152,79 +152,120 @@
     font-size: 14px;
   }
 
+  .hero {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.hero h1 {
+  font-size: 64px;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+}
+
+.hero .sub {
+  color: #888;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+/* VIDEO BOX */
+.video-box {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.video-placeholder {
+  height: 360px;
+  background: linear-gradient(145deg, #1a1a1a, #222);
+  border-radius: 12px;
+  border: 1px solid #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* BIG CTA */
+.cta-large {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 18px 34px;
+  font-size: 18px;
+  background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  border: 1px solid #444;
+  transition: 0.2s;
+}
+
+.cta-large:hover {
+  border-color: #7CFFB2;
+  box-shadow: 0 0 20px rgba(124,255,178,0.4);
+}
+
 </style>
 </head>
 
 <body>
 
-  <div class="container">
+ <div class="container">
 
-    <!-- HERO -->
-    <h1>FIELD ENGINE</h1>
-    <h2>Real-Time Landscape Estimation within Sketchup.</h2>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">FIELD</div>
+    <div class="nav">
+      <a href="/pricing.html">Pricing</a>
+      <a href="/legals.html">Legal</a>
+    </div>
+  </div>
 
-    <p>
-      Accurate landscape estimates as you design. No spreadsheets. No guesswork.
+  <!-- HERO -->
+  <div class="hero">
+
+    <h1>Design → Cost → Quote</h1>
+    <p class="sub">
+      Real-time landscape estimating directly inside SketchUp
     </p>
 
-    <a href="/pricing.html" class="cta">
+    <!-- VIDEO CONTAINER -->
+    <div class="video-box">
+      <div class="video-placeholder">
+        Demo Video (coming next)
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <a href="/pricing.html" class="cta-large">
       Start using FIELD → £39/month
     </a>
 
-    <hr>
-
-    <!-- FEATURES -->
-    <div class="features">
-      <div class="card">
-        <h3>Live Costing</h3>
-        <p>See real costs update instantly as you design in SketchUp.</p>
-      </div>
-
-      <div class="card">
-        <h3>Real-World Pricing</h3>
-        <p>Materials, labour and plant based on how projects are actually built.</p>
-      </div>
-
-      <div class="card">
-        <h3>Export Ready</h3>
-        <p>Generate clean BOQs and client-ready quotes in seconds.</p>
-      </div>
-    </div>
-
-    <hr>
-
-    <!-- HOW IT WORKS -->
-    <div class="steps">
-      <div class="step">
-        <h3>1. Design</h3>
-        <p>Model your garden in SketchUp as normal.</p>
-      </div>
-
-      <div class="step">
-        <h3>2. Cost</h3>
-        <p>Watch pricing update live as you build.</p>
-      </div>
-
-      <div class="step">
-        <h3>3. Quote</h3>
-        <p>Export a professional quote instantly.</p>
-      </div>
-    </div>
-
-    <hr>
-
-    <!-- FINAL CTA -->
-    <div style="text-align:center;">
-      <a href="/pricing.html" class="cta">
-        Start using FIELD
-      </a>
-    </div>
-
-    <div class="footer">
-      FIELD Engine ©
-    </div>
-
   </div>
 
+  <hr>
+
+  <!-- FEATURES -->
+  <div class="features">
+    <div class="card">
+      <h3>Live Costing</h3>
+      <p>Costs update instantly as you design.</p>
+    </div>
+
+    <div class="card">
+      <h3>Real Pricing</h3>
+      <p>Built from real materials, labour and plant.</p>
+    </div>
+
+    <div class="card">
+      <h3>Export Ready</h3>
+      <p>Generate BOQs and quotes in seconds.</p>
+    </div>
+  </div>
+
+</div>
 </body>
 </html>
