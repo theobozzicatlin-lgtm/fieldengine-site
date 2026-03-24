@@ -28,11 +28,21 @@
   }
 
   .logo {
-    font-weight: 700;
-    font-size: 18px;
-    letter-spacing: 1px;
-    color: #7CFFB2;
-  }
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 26px;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 6px rgba(124,255,178,0.25));
+  transition: 0.2s ease;
+}
+
+.logo img:hover {
+  opacity: 1;
+  filter: drop-shadow(0 0 10px rgba(124,255,178,0.5));
+}
 
   .nav a {
     color: #aaa;
@@ -217,7 +227,9 @@
 
   <!-- HEADER -->
   <div class="header">
-    <div class="logo">FIELD</div>
+    <div class="logo">
+  <img src="./logo.png" alt="FIELD">
+</div>
     <div class="nav">
       <a href="/pricing.html">Pricing</a>
       <a href="/legals.html">Legal</a>
