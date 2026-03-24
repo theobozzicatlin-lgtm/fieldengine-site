@@ -187,8 +187,37 @@
 
 /* VIDEO BOX */
 .video-box {
-  margin: 40px auto;
-  max-width: 800px;
+  margin: 60px auto;
+  max-width: 900px;
+  position: relative;
+}
+
+/* Actual video styling */
+.video-box video {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid #2a2a2a;
+
+  box-shadow: 
+    0 50px 100px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(255,255,255,0.03) inset;
+
+  transition: transform 0.3s ease;
+}
+
+/* Subtle hover lift */
+.video-box:hover video {
+  transform: translateY(-4px);
+}
+
+/* Glow behind video (THIS is the “premium” effect) */
+.video-box::before {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  background: radial-gradient(circle, rgba(124,255,178,0.12), transparent 70%);
+  z-index: -1;
+  filter: blur(60px);
 }
 
 .video-placeholder {
@@ -223,6 +252,29 @@
   border-color: #7CFFB2;
   box-shadow: 0 0 20px rgba(124,255,178,0.4);
 }
+  .logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(124,255,178,0.25));
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #eaeaea;
+}
+
+.logo:hover .logo-text {
+  color: #7CFFB2;
+}
 
 </style>
 </head>
@@ -233,8 +285,9 @@
 
   <!-- HEADER -->
   <div class="header">
-    <div class="logo">
-  <img src="./logo.png" alt="FIELD">
+  <div class="logo">
+  <img src="./logo.png" alt="FIELD logo">
+  <span class="logo-text">FIELD ENGINE</span>
 </div>
     <div class="nav">
       <a href="/pricing.html">Pricing</a>
@@ -251,9 +304,13 @@
 No spreadsheets. No guesswork.
     </p>
 
+    <p style="color:#7CFFB2; font-weight:600; margin-bottom:10px;">
+  Live in SketchUp — Real Project Costing
+</p>
+
     <!-- VIDEO CONTAINER -->
    <div class="video-box">
-  <video autoplay muted loop playsinline preload="auto" controls style="width:100%; border-radius:12px;">
+<video autoplay muted loop playsinline preload="auto">
    <source src="./demo3.mp4" type="video/mp4">
   </video>
 </div>
