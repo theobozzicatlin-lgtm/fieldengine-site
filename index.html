@@ -16,51 +16,70 @@
     .container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 34px 20px 40px;
     }
 
     /* HEADER */
+    .site-header {
+      width: 100%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(18, 18, 18, 0.62);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .header-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 18px 24px;
+    }
+
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 40px;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.01);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      backdrop-filter: blur(6px);
+      gap: 24px;
     }
 
     /* LEFT BRAND */
     .brand-left {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      min-width: 0;
     }
 
     .brand-logo {
-      width: 170px;
-      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.18));
+      width: 190px;
+      height: auto;
+      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.16));
     }
 
     .brand-name {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
+      font-size: 23px;
+      font-weight: 780;
+      letter-spacing: 0.06em;
       color: #eaeaea;
+      white-space: nowrap;
     }
 
     /* NAV */
+    .nav {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
     .nav a {
-      color: #aaa;
-      margin-left: 20px;
+      color: #9aa3af;
+      margin-left: 22px;
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
     }
 
     .nav a:hover {
-      color: #fff;
+      color: #d1d5db;
     }
 
     /* HERO */
@@ -179,24 +198,41 @@
       transform: translateY(-4px);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
+
+    @media (max-width: 900px) {
+      .header-inner {
+        padding: 14px 18px;
+      }
+
+      .brand-logo {
+        width: 170px;
+      }
+
+      .brand-name {
+        font-size: 20px;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <!-- HEADER -->
-    <div class="header">
-      <div class="brand-left">
-        <img src="./logo.png" alt="FIELD logo" class="brand-logo" />
-        <div class="brand-name">FIELD ENGINE</div>
-      </div>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header">
+        <div class="brand-left">
+          <img src="./logo.png" alt="FIELD logo" class="brand-logo" />
+          <div class="brand-name">FIELD ENGINE</div>
+        </div>
 
-      <div class="nav">
-        <a href="/pricing.html">Pricing</a>
-        <a href="/legals.html">Legal</a>
+        <div class="nav">
+          <a href="/pricing.html">Pricing</a>
+          <a href="/legals.html">Legal</a>
+        </div>
       </div>
     </div>
+  </header>
 
+  <div class="container">
     <!-- HERO -->
     <div class="hero">
       <h1>Design. Cost. Quote — Instantly.</h1>
