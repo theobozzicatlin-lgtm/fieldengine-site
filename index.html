@@ -21,10 +21,10 @@
 
   /* HEADER */
 .header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
-  margin-bottom: 80px; /* more breathing room */
+  margin-bottom: 80px;
 }
 
   .logo {
@@ -33,16 +33,16 @@
   padding-left: 4px;
 }
 
-  .logo {
+.logo {
   display: flex;
   align-items: center;
 }
 
 .logo img {
-  height: 48px;   /* ← BIG change */
+  width: 220px;   /* ← THIS is the key */
+  height: auto;
   opacity: 0.95;
-  filter: drop-shadow(0 0 10px rgba(124,255,178,0.25));
-  transition: 0.2s ease;
+  filter: drop-shadow(0 0 12px rgba(124,255,178,0.25));
 }
 
 .logo img:hover {
