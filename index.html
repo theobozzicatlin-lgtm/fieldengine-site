@@ -8,7 +8,7 @@
   <style>
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
       background: radial-gradient(circle at top, #1f1f1f, #121212);
       color: #eaeaea;
     }
@@ -23,8 +23,7 @@
     .site-header {
       width: 100%;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(18, 18, 18, 0.62);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      background: rgba(18, 18, 18, 0.78);
     }
 
     .header-inner {
@@ -51,13 +50,13 @@
     .brand-logo {
       width: 190px;
       height: auto;
-      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.16));
+      filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.14));
     }
 
     .brand-name {
-      font-size: 23px;
-      font-weight: 780;
-      letter-spacing: 0.06em;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
       color: #eaeaea;
       white-space: nowrap;
     }
@@ -88,53 +87,36 @@
     }
 
     .hero-content {
-      max-width: 760px;
-      margin: 0 auto 44px;
+      max-width: 700px;
+      margin: 0 auto 52px;
     }
 
     h1 {
-      font-size: 68px;
-      margin-bottom: 18px;
-      letter-spacing: -1.1px;
-      line-height: 1.05;
+      font-size: 58px;
+      margin-bottom: 16px;
+      letter-spacing: -0.8px;
+      line-height: 1.02;
     }
 
     .sub {
       color: #9aa3af;
-      font-size: 18px;
-      margin-bottom: 12px;
+      font-size: 19px;
+      margin-bottom: 14px;
       line-height: 1.5;
     }
 
     .trust-line {
-      color: #7f8793;
+      color: #9aa3af;
       font-size: 14px;
       margin: 0;
       letter-spacing: 0.01em;
     }
 
-    .proof {
-      color: #7cffb2;
-      font-weight: 600;
-      margin-bottom: 30px;
-      font-size: 14px;
-    }
-
     /* VIDEO */
     .video-box {
-      margin: 0 auto;
+      margin: 0 auto 46px;
       max-width: 1000px;
       position: relative;
-    }
-
-    .video-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: #8b949e;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin: 0 0 12px;
-      text-align: left;
     }
 
     .video-box video {
@@ -142,45 +124,30 @@
       border-radius: 18px;
       background: #000;
       box-shadow:
-        0 80px 160px rgba(0, 0, 0, 0.8),
-        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
-      transition: transform 0.3s ease;
-    }
-
-    .video-box:hover video {
-      transform: translateY(-4px);
-    }
-
-    .video-box::before {
-      content: "";
-      position: absolute;
-      inset: -80px;
-      background: radial-gradient(circle, rgba(124, 255, 178, 0.12), transparent 70%);
-      z-index: -1;
-      filter: blur(80px);
+        0 18px 40px rgba(0, 0, 0, 0.38),
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset;
     }
 
     /* CTA */
     .cta-large {
       display: inline-block;
-      margin-top: 40px;
-      padding: 18px 36px;
+      margin-top: 0;
+      padding: 18px 38px;
       font-size: 18px;
-      background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+      background: #2f3640;
       border-radius: 12px;
       text-decoration: none;
       color: white;
-      font-weight: 600;
-      border: 1px solid #444;
-      transition: all 0.25s ease;
+      font-weight: 650;
+      border: 1px solid #4b5563;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+      transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .cta-large:hover {
-      border-color: #7cffb2;
-      box-shadow:
-        0 0 25px rgba(124, 255, 178, 0.25),
-        0 10px 30px rgba(0, 0, 0, 0.5);
-      transform: translateY(-2px);
+      background: #374151;
+      border-color: #6b7280;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
     }
 
     hr {
@@ -232,7 +199,15 @@
       }
 
       .brand-name {
-        font-size: 20px;
+        font-size: 19px;
+      }
+
+      h1 {
+        font-size: 46px;
+      }
+
+      .hero-content {
+        margin-bottom: 40px;
       }
     }
   </style>
@@ -270,7 +245,6 @@
 
       <!-- VIDEO -->
       <div class="video-box">
-        <p class="video-label">Live inside SketchUp</p>
         <video autoplay muted loop playsinline preload="auto" controls>
           <source src="./demo3.mp4" type="video/mp4" />
         </video>
